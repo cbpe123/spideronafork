@@ -8,31 +8,32 @@
   <script>
         function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
+                //navigator.geolocation.getCurrentPosition(showPosition, showError);
+		return navigator.geolocation;
             } else {
-                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+                document.getElementById("location-name").innerHTML = "Geolocation is not supported by this browser.";
             }
         }
 
         function showPosition(position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
-            document.getElementById("demo").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+            document.getElementById("location-name").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
         }
 
         function showError(error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
-                    document.getElementById("demo").innerHTML = "User denied the request for Geolocation.";
+                    document.getElementById("location-name").innerHTML = "User denied the request for Geolocation.";
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    document.getElementById("demo").innerHTML = "Location information is unavailable.";
+                    document.getElementById("location-name").innerHTML = "Location information is unavailable.";
                     break;
                 case error.TIMEOUT:
-                    document.getElementById("demo").innerHTML = "The request to get user location timed out.";
+                    document.getElementById("location-name").innerHTML = "The request to get user location timed out.";
                     break;
                 case error.UNKNOWN_ERROR:
-                    document.getElementById("demo").innerHTML = "An unknown error occurred.";
+                    document.getElementById("location-name").innerHTML = "An unknown error occurred.";
                     break;
             }
         }
@@ -120,6 +121,10 @@
       #map {margin-top: 500px;}
     </style>
 </head>
+
+<body>Current Location:</body>
+<div id="location-name" />
+	
 <body>
   <div id="map" />
     <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
@@ -137,7 +142,7 @@
     map.addControl(new maplibregl.NavigationControl(), "top-left");
 
     const position = getLocation();
-    const marker = new maplibregl.Marker().setLngLat(position).addTo(map);
+    const marker = new maplibregl.Marker().setLngLat(position.getCurrentPosition(showPosition, showError)).addTo(map);
   </script>
 </body>
 </html>
