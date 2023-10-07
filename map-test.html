@@ -36,7 +36,7 @@
                     break;
             }
         }
-		getLocation();
+		//getLocation();
     </script>
   
   
@@ -135,6 +135,9 @@
       zoom: 11,
     });
     map.addControl(new maplibregl.NavigationControl(), "top-left");
+
+    const position = getLocation();
+    const marker = new maplibregl.Marker().setLngLat(position).addTo(map);
   </script>
 </body>
 </html>
