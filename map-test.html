@@ -11,8 +11,8 @@
 <head>
   <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
     <style>
-      body { margin: 0; }
-      #map { height: 100vh; }
+      body { margin: 100; }
+      #map { height: 50vh; }
     </style>
 </head>
 <body>
@@ -26,10 +26,13 @@
     const map = new maplibregl.Map({
       container: "map",
       style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
-      center: [-123.115898, 49.295868],
-      zoom: 11,
+      center: [38.830925, -77.307318],
+      zoom: 12,
     });
     map.addControl(new maplibregl.NavigationControl(), "top-left");
   </script>
+
+  <label for="addressA">addressA:</label>
+    <input type="text" id="addressA" name="Your Location:" placeholder="24 Cloverfield St">
 </body>
 </html>
