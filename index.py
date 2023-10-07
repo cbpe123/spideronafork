@@ -7,13 +7,15 @@ def handler(event, context):
         'output': 'Hello World Hello World Again',
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
+    f = open('test.html', 'r')
     response = {
     "statusCode": 200,
-    "body": open('test.html', 'r').read(),
+    "body": f.read(),
     "headers": {
         'Content-Type': 'text/html',
     }
     }
+    f.close()
     return response
     # return {'statusCode': 200,
     #         'body': json.dumps(data),
