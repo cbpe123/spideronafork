@@ -9,35 +9,45 @@
         function getLocation() {
             if (navigator.geolocation) {
                 //navigator.geolocation.getCurrentPosition(showPosition, showError);
-		return navigator.geolocation;
+				
+				const options = {
+					enableHighAccuracy: true,
+					timeout: 5000,
+					maximumAge: 0,
+				};
+				
+				const position = navigator.geolocation.getCurrentPosition(makeMarker, showError, options);
             } else {
-                document.getElementById("location-name").innerHTML = "Geolocation is not supported by this browser.";
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
             }
         }
 
         function showPosition(position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
-            document.getElementById("location-name").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+            document.getElementById("demo").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+			
+			const latlng = [latitude, longitude];
+			
+			return latlng;
         }
 
         function showError(error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
-                    document.getElementById("location-name").innerHTML = "User denied the request for Geolocation.";
+                    document.getElementById("demo").innerHTML = "User denied the request for Geolocation.";
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    document.getElementById("location-name").innerHTML = "Location information is unavailable.";
+                    document.getElementById("demo").innerHTML = "Location information is unavailable.";
                     break;
                 case error.TIMEOUT:
-                    document.getElementById("location-name").innerHTML = "The request to get user location timed out.";
+                    document.getElementById("demo").innerHTML = "The request to get user location timed out.";
                     break;
                 case error.UNKNOWN_ERROR:
-                    document.getElementById("location-name").innerHTML = "An unknown error occurred.";
+                    document.getElementById("demo").innerHTML = "An unknown error occurred.";
                     break;
             }
         }
-		//getLocation();
     </script>
   
   
@@ -121,28 +131,36 @@
       #map {margin-top: 500px;}
     </style>
 </head>
-
-<body>Current Location:</body>
-<div id="location-name" />
-	
 <body>
   <div id="map" />
     <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
     <script>
-    const apiKey = "v1.public.eyJqdGkiOiJmOTUwMzY0MS02N2E5LTQ2MzEtYTM4MS0yMmM3ZTdiM2M0ZDIifRm-xLXQHjvZJKA3Kue4J_KCghqGj5OQmw64q_jHt34eSkjs8IW77WSyYwoGOJ7Mo9W4wl3zu3bRXnuDxvx4QeUM1d7RYY0oEMACHrox5hTWMxWO_BKEGjgtRvfexEWAJ3nfMTZ4HB9AMYdYkqlHVa_QIw1pMzWUjlR3MbxWk5ma7gcLcYmBUHOkYf83iQmKemAFxrCH5iz4a0OqKmF3ZZAfzDfpLoa8J4lwyxlTYj2vJwMDq6CLQ_0fsL8ZW5VtXIXvde10bVaEEPxHwB2AOw2Df7eEJBT4EWUbmsgUYdC2D3I0K5N4c4HQVWauOL7AJTpXIOfU4DG-Qq3XGl3vrJA.ZWU0ZWIzMTktMWRhNi00Mzg0LTllMzYtNzlmMDU3MjRmYTkx";
-    const mapName = "SIMPLE_DARK_MAP";
-    const region = "us-east-1";
+	getLocation();
+    
+	function makeMarker(pos)
+	{
+		var latitude = pos.coords.latitude;
+        var longitude = pos.coords.longitude;
+		
+		const position = [longitude, latitude];
+		
+		console.log(position);
+		
+		//map
+		const apiKey = "v1.public.eyJqdGkiOiJmOTUwMzY0MS02N2E5LTQ2MzEtYTM4MS0yMmM3ZTdiM2M0ZDIifRm-xLXQHjvZJKA3Kue4J_KCghqGj5OQmw64q_jHt34eSkjs8IW77WSyYwoGOJ7Mo9W4wl3zu3bRXnuDxvx4QeUM1d7RYY0oEMACHrox5hTWMxWO_BKEGjgtRvfexEWAJ3nfMTZ4HB9AMYdYkqlHVa_QIw1pMzWUjlR3MbxWk5ma7gcLcYmBUHOkYf83iQmKemAFxrCH5iz4a0OqKmF3ZZAfzDfpLoa8J4lwyxlTYj2vJwMDq6CLQ_0fsL8ZW5VtXIXvde10bVaEEPxHwB2AOw2Df7eEJBT4EWUbmsgUYdC2D3I0K5N4c4HQVWauOL7AJTpXIOfU4DG-Qq3XGl3vrJA.ZWU0ZWIzMTktMWRhNi00Mzg0LTllMzYtNzlmMDU3MjRmYTkx";
+		const mapName = "SIMPLE_DARK_MAP";
+		const region = "us-east-1";
 
-    const map = new maplibregl.Map({
-      container: "map",
-      style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
-      center: [-123.115898, 49.295868],
-      zoom: 11,
-    });
-    map.addControl(new maplibregl.NavigationControl(), "top-left");
-
-    const position = getLocation();
-    const marker = new maplibregl.Marker().setLngLat(position.getCurrentPosition(showPosition, showError)).addTo(map);
+		const map = new maplibregl.Map({
+			container: "map",
+			style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
+			center: position,
+			zoom: 13,
+		});
+		map.addControl(new maplibregl.NavigationControl(), "top-left");
+		
+		const marker = new maplibregl.Marker().setLngLat(position).addTo(map);
+	}
   </script>
 </body>
 </html>
