@@ -132,6 +132,12 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        .friend-profile-image {
+        width: 100px; /* Set the width you want */
+        height: 100px; /* Set the height you want */
+        border-radius: 50%;
+        object-fit: cover;
+    }
         .profile {
             margin-top: 20px;
             padding: 20px;
@@ -168,9 +174,30 @@
                 <header>Friend List</header>
                 <nav>
                     <ul>
-                        <li><a href="#">Friend 1</a></li>
-                        <li><a href="#">Friend 2</a></li>
-                        <li><a href="#">Friend 3</a></li>
+                        <li>
+                            <a href="#">
+                                <span onmouseover="showFriendDetails('Mark Kent', 'friend1.jpg')" onmouseout="hideFriendDetails()">
+                                    <img class="friend-profile-image" src="friend1.jpg" alt="Friend 1 Profile Image">
+                                    Friend 1
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span onmouseover="showFriendDetails('John Smith', 'friend_2.jpg')" onmouseout="hideFriendDetails()">
+                                    <img class="friend-profile-image" src="friend_2.jpg" alt="Friend 2 Profile Image">
+                                    Friend 2
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span onmouseover="showFriendDetails('Robert Hill', 'friend2.jpg')" onmouseout="hideFriendDetails()">
+                                    <img class="friend-profile-image" src="friend2.jpg" alt="Friend 3 Profile Image">
+                                    Friend 3
+                                </span>
+                            </a>
+                        </li>
                         <li><a href="#">Friend 4</a></li>
                         <li><a href="#">Friend 5</a></li>
                         <li><a href="#">Friend 6</a></li>
@@ -180,6 +207,10 @@
                     </ul>
                 </nav>
             </section>
+            <div id="friendDetails">
+                <img id="friendImage" src="" alt="Friend's Profile Image">
+                <p id="friendName"></p>
+              </div>
             <section id="profile">
                 <!-- Add content related to the main section here -->
             </section>
@@ -228,6 +259,25 @@
 
                 const marker = new maplibregl.Marker().setLngLat(position).addTo(map);
             }
+        </script>
+        <script>
+        function showFriendDetails(friendName, profileImageSrc) {
+            // Get the friendDetails container, friendName paragraph, and friendImage element
+            const friendDetails = document.getElementById("friendDetails");
+            const friendNameElement = document.getElementById("friendName");
+            const friendImageElement = document.getElementById("friendImage");
+          
+            // Set the friend's name and profile image source in the elements
+            friendNameElement.textContent = friendName;
+            friendImageElement.src = profileImageSrc;
+          
+            // Show the friendDetails container
+            friendDetails.style.display = "block";
+          }
+          function hideFriendDetails() {
+            const friendDetails = document.getElementById("friendDetails");
+            friendDetails.style.display = "none";
+          }
         </script>
     </body>
 </html>
