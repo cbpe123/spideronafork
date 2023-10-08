@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>spideronafork</title>
+</head>
+<body>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Website</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: #333;
+                color: #daff08;
+                text-align: center;
+                padding: 10px;
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                background-color: #06300e;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: #fffb04;
+                padding: 10px 20px;
+            }
+
+            nav a:hover {
+                background-color: #0f6427;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                display: flex;
+                justify-content: space-between; /* Add space between the map and friend list */
+                flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+            }
+
+            #map {
+                flex: 1; /* Make the map take up available space */
+                height: 70vh;
+            }
+
+            #main {
+                flex: 0 0 30%; /* Make the friend list take up available space */
+                max-width: 30%; /* Set max width for friend list */
+                background-color: #f0f0f0; /* Add background color for better readability */
+                padding: 20px; /* Add padding to the friend list */
+                box-sizing: border-box; /* include padding with specified width */
+                float: left; /* float list to right side */
+                height: 300px; /* set height for friend list container */
+                overflow-y: scroll; /* add scroll bar */
+            }
+
+            /* Style for the friend list items */
+            #main ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            #main ul li {
+                margin-bottom: 10px;
+            }
+
+            #main ul li a {
+                text-align: left; /* Set text alignment to the left */
+                display: block; /* Make the anchor element a block element to take up the full width of the list item */
+                padding: 10px 0; /* Add some vertical padding for spacing */
+                text-decoration: none; /* Remove the default underline on anchor elements */
+                color: #f0f0f0; /* Set the text color (you can adjust the color as needed) */
+            }
+            .profile-image {
+            display: block;
+            margin: 0 auto;
+            width: 200px; /* Adjust image size as needed */
+            height: 200px; /* Adjust image size as needed */
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .friend-profile-image {
+        width: 100px; /* Set the width you want */
+        height: 100px; /* Set the height you want */
+        border-radius: 50%;
+        object-fit: cover;
+    }
+        .profile {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Mason Hangout</h1>
+        </header>
+        <nav>
+            <a href="https://t9bk51rful.execute-api.us-east-1.amazonaws.com/ReturnDifferentHTML">Main</a>
+            <a href="https://t9bk51rful.execute-api.us-east-1.amazonaws.com/ReturnDifferentHTML?profile">Profile</a>
+            <a href="friends.html">Community</a>
+        </nav>
+        <div class="container">
+            <section id="profile">
+                <!-- Static Profile Image -->
+                <h1>Character Profile</h1>
+                <img class="profile-image" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR4Lv86RV0CKFsc7vv2wrOFl72IR29tMhI8rxIIMbXDwM0y_Id3" alt="Profile Image">
+                <!-- Profile Section -->
+       <div class="profile">
+           <h2>My Profile</h2>
+           <p>Name: Patricia Batman</p>
+           <p>Allergy: Seafood</p>
+           <!-- Add more profile information here -->
+       </div>
+           </section>
+            <!-- Content for your profile, main, and friend list goes here -->
+            <section id="main">
+                <!-- Add content related to the friend list here -->
+                <header>Friend List</header>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span onmouseover="showFriendDetails('Mark Kent', 'friend1.jpg')" onmouseout="hideFriendDetails()">
+                                    <img class="friend-profile-image" src="https://cdn.pixabay.com/photo/2022/02/20/14/01/avatar-7024621_640.png" alt="Friend 1 Profile Image">
+                                    Friend 1
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span onmouseover="showFriendDetails('John Smith', 'friend_2.jpg')" onmouseout="hideFriendDetails()">
+                                    <img class="friend-profile-image" src="https://banner2.cleanpng.com/20190624/fcj/kisspng-gold-coin-8-bit-stock-photography-platinum-coin-winky-face-png-96-images-in-collection-page-1-5d11961a78dac8.038057381561433626495.jpg" alt="Friend 2 Profile Image">
+                                    Friend 2
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span onmouseover="showFriendDetails('Robert Hill', 'friend2.jpg')" onmouseout="hideFriendDetails()">
+                                    <img class= "friend-profile-image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSI3mJ1eL6srenCWZvTt_UELUGUlOs9o_yJ0fyw79kKnzFPcX_d" alt="Friend 3 Profile Image">
+                                    Friend 3
+                                </span>
+                            </a>
+                        </li>
+                        <li><a href="#">Friend 4</a></li>
+                        <li><a href="#">Friend 5</a></li>
+                        <li><a href="#">Friend 6</a></li>
+                        <li><a href="#">Friend 7</a></li>
+                        <li><a href="#">Friend 8</a></li>
+                        <!-- Add more friends as needed -->
+                    </ul>
+                </nav>
+            </section>
+            <div id="friendDetails" style="width: 200px; height: 20px;"></div>
+
+            <section id="profile">
+                <!-- Add content related to the main section here -->
+            </section>
+            <section id="friends">
+                <!-- Add content related to the friend list here -->
+            </section>
+        </div>
+    </body>
+    </html>
+
+    <body>
+        <script>
+        function showFriendDetails(friendName, profileImageSrc) {
+            // Get the friendDetails container, friendName paragraph, and friendImage element
+            const friendDetails = document.getElementById("friendDetails");
+            const friendNameElement = document.getElementById("friendName");
+            const friendImageElement = document.getElementById("friendImage");
+          
+            // Set the friend's name and profile image source in the elements
+            friendNameElement.textContent = friendName;
+            friendImageElement.src = profileImageSrc;
+          
+            // Show the friendDetails container
+            friendDetails.style.display = "block";
+          }
+          function hideFriendDetails() {
+            const friendDetails = document.getElementById("friendDetails");
+            friendDetails.style.display = "none";
+          }
+        </script>
+    </body>
+</html>
+
