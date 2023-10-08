@@ -47,8 +47,6 @@
         }
     </script>
 
-    <center><div id="output"></div></center>
-
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -126,6 +124,20 @@
                 text-decoration: none; /* Remove the default underline on anchor elements */
                 color: #f0f0f0; /* Set the text color (you can adjust the color as needed) */
             }
+            .profile-image {
+            display: block;
+            margin: 0 auto;
+            width: 200px; /* Adjust image size as needed */
+            height: 200px; /* Adjust image size as needed */
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .profile {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
         </style>
     </head>
     <body>
@@ -135,9 +147,21 @@
         <nav>
             <a href="main_page.html">Main</a>
             <a href="profile.html">Profile</a>
-            <a href="friends.html">Friend List</a>
+            <a href="friends.html">Community</a>
         </nav>
         <div class="container">
+            <section id="profile">
+                <!-- Static Profile Image -->
+                <h1>Character Profile</h1>
+                <img class="profile-image" src="test_pfp.jpeg" alt="Profile Image">
+                <!-- Profile Section -->
+       <div class="profile">
+           <h2>My Profile</h2>
+           <p>Name: Patricia Batman</p>
+           <p>Allergy: Seafood</p>
+           <!-- Add more profile information here -->
+       </div>
+           </section>
             <!-- Content for your profile, main, and friend list goes here -->
             <section id="main">
                 <!-- Add content related to the friend list here -->
