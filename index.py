@@ -9,7 +9,7 @@ def handler(event, context):
         'output': 'Hello World Hello World Again',
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
-    f = open('map-test.html', 'r')
+    f = open('main_page.html', 'r')
     # f = open('Rocket.html', 'r')
     # f = open('test.html', 'r')
     response = {
